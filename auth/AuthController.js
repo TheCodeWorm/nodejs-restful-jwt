@@ -13,8 +13,10 @@ const User = require('../user/User');
 
 router.post('/register', function(req, res) {
   
+  // encrypt it with Bcrypt’s hashing 
   const hashedPwd = bcrypt.hashSync(req.body.password, 8);
   
+  // create user: name, email, password
   User.create({
     name : req.body.name,
     email : req.body.email,
@@ -22,7 +24,7 @@ router.post('/register', function(req, res) {
   },
   function (err, user) {
     if (err) return res.status(500).send("There was a problem registering the user.")
-    // create a token
+    // create a token for user
     const token = jwt.sign({ id: user._id }, config.secret, {
       expiresIn: 86400 // expires in 24 hours
     });
@@ -32,6 +34,8 @@ router.post('/register', function(req, res) {
 
 router.get('/me', function(req, res) {
   var token = req.headers['x-access-token'];
+
+  // if no token was provided, return message error of 401 
   if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
   
   jwt.verify(token, config.secret, function(err, decoded) {
