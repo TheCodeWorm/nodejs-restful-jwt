@@ -66,4 +66,9 @@ router.post('/login', function(req, res) {
   });
 });
 
+// logout: nullify token
+router.get('/logout', function(req, res) {
+  res.status(200).send({ auth: false, token: null });
+});
+
 module.exports = router;
