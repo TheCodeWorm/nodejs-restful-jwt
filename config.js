@@ -3,7 +3,6 @@
 // place your keys in env variables
 // this is only for demo purposes
 
-
 module.exports = {
   'secret_key': 'supersecret'
 };
