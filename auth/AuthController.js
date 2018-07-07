@@ -49,11 +49,13 @@ router.get('/me', function(req, res) {
     	if (!user) 
     		return res.status(404).send("No user found. ");
 
-      // following line is same as the one after that
-    	/* res.status(200).send(user); */
       next(user);
-	});
   });
+});
+
+// middleware
+router.use(function (user, req, res, next) {
+  res.status(200).send(user);
 });
 
 router.post('/login', function(req, res) {
