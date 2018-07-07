@@ -5,5 +5,5 @@
 
 
 module.exports = {
-  'secret': 'supersecret'
+  'secret_key': 'supersecret'
 };
