@@ -5,6 +5,7 @@ const config = require('../config');
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
+const VerifyToken = require('./VerifyToken');
 
 
 router.use(bodyParser.urlencoded({ extended: false }));
